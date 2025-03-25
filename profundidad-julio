@@ -1,0 +1,40 @@
+namespace Profundidad1
+{
+    using System;
+    using System.Collections.Generic;
+
+    class Program
+    {
+        static Dictionary<char, List<char>> grafo = new Dictionary<char, List<char>>
+        {
+        {'A', new List<char>{'B', 'C'}},
+        {'B', new List<char>{'D', 'E'}},
+        {'C', new List<char>{'F'}},
+        {'D', new List<char>()},
+        {'E', new List<char>()},
+        {'F', new List<char>()}
+        };
+
+
+        static HashSet<char> visitados = new HashSet<char>();
+
+        static void profundidad(char nodo)
+        {
+            if (visitados.Contains(nodo)) return;  // Evitar visitar nodos repetidos
+
+            Console.Write(nodo + " "); // Mostrar el nodo visitado
+            visitados.Add(nodo); // Marcarlo como visitado
+
+            foreach (char vecino in grafo[nodo])
+            {
+                profundidad(vecino); // Llamada recursiva para cada vecino
+            }
+        }
+
+        static void Main()
+        {
+            Console.WriteLine("Recorrido de profundidad:");
+            profundidad('A'); // Empezamos desde el nodo A
+        }
+    }
+}
