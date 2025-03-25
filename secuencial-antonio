@@ -1,0 +1,34 @@
+using System;
+
+class busquedasecuencialnombres
+{
+    static int BuscarNombre(string[] nombres, string nombreBuscado)
+    {
+        for (int i = 0; i < nombres.Length; i++)
+        {
+            if (nombres[i] == nombreBuscado)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    static void Main(string[] args)
+    {
+        string[] nombres = { "Ingrid", "Vicente", "Luis", "Alejandro", "Julio", "Antonio" };
+        Console.Write("Ingrese un nombre para buscar: ");
+        string nombreBuscado = Console.ReadLine();
+
+        int posicion = BuscarNombre(nombres, nombreBuscado);
+
+        if (posicion != -1)
+        {
+            Console.WriteLine($"El nombre {nombreBuscado} se encontró en la posición {posicion}.");
+        }
+        else
+        {
+            Console.WriteLine($"El nombre {nombreBuscado} no se encontró en la lista.");
+        }
+    }
+}
