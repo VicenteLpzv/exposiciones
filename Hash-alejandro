@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        
+        int[] codigosLibros = { 25, 18, 32, 44, 12 };
+
+      
+        int numEstantes = 4;
+
+        List<int>[] estantes = new List<int>[numEstantes];
+        for (int i = 0; i < numEstantes; i++)
+        {
+            estantes[i] = new List<int>();
+        }
+
+      
+        foreach (int codigo in codigosLibros)
+        {
+            int indiceEstante = codigo % numEstantes;
+            estantes[indiceEstante].Add(codigo);
+        }
+
+        
+        Console.WriteLine("distribucion de libros en estantes:");
+        for (int i = 0; i < estantes.Length; i++)
+        {
+            Console.Write($"estante {i}: ");
+            foreach (int libro in estantes[i])
+            {
+                Console.Write($"{libro} ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
