@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Generic;
+
+class Programa
+{
+    static int totalNodos = 12;
+
+    static List<int>[] grafo = new List<int>[12]
+
+    {
+        new List<int>{1},             // 0
+        new List<int>{0, 2},          // 1
+        new List<int>{1, 5},          // 2
+        new List<int>{4, 6},          // 3
+        new List<int>{3},             // 4 (no conectado con 1 ni 7)
+        new List<int>{2},             // 5 (no conectado con 8)
+        new List<int>{3, 7},          // 6
+        new List<int>{6, 8, 10},      // 7
+        new List<int>{7, 11},         // 8
+        new List<int>{},              // 9 (no aparece en grafo útil)
+        new List<int>{7},             // 10
+        new List<int>{8}              // 11
+    };
+
+    static void BFS(int nodoInicial)
+    {
+        bool[] visitado = new bool[totalNodos];
+        Queue<int> cola = new Queue<int>();
+
+        visitado[nodoInicial] = true;
+        cola.Enqueue(nodoInicial);
+
+        Console.WriteLine("Recorrido BFS desde nodo " + nodoInicial + ":");
+
+        while (cola.Count > 0)
+        {
+            int nodo = cola.Dequeue();
+            Console.Write(nodo + " ");
+
+            foreach (int vecino in grafo[nodo])
+            {
+                if (!visitado[vecino])
+                {
+                    visitado[vecino] = true;
+                    cola.Enqueue(vecino);
+                }
+            }
+        }
+        Console.WriteLine();
+    }
+
+    static void Main()
+    {
+        Console.WriteLine("Hay un total de " + totalNodos + " nodos numerados del 0 al 11.");
+        Console.Write("Ingresa el número del nodo inicial para hacer BFS: ");
+
+        int nodoInicial;
+        while (!int.TryParse(Console.ReadLine(), out nodoInicial) || nodoInicial < 0 || nodoInicial >= totalNodos)
+        {
+            Console.Write("Entrada inválida. Por favor ingresa un número entre 0 y 11: ");
+        }
+
+        BFS(nodoInicial);
+    }
+}
