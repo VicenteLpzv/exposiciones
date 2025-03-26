@@ -1,0 +1,62 @@
+using System;
+
+class OrdenamientoVector
+{
+    static void Main(string[] args)
+    {
+        // Solicitar al usuario el número de elementos
+        Console.Write("¿Cuántos elementos tendrá el arreglo?: ");
+        int cantidad = int.Parse(Console.ReadLine());
+
+        // Crear el arreglo con el tamaño indicado
+        int[] numeros = new int[cantidad];
+
+        // Llenar el arreglo con datos proporcionados por el usuario
+        Console.WriteLine("Introduce los valores del arreglo:");
+        for (int indice = 0; indice < cantidad; indice++)
+        {
+            Console.Write($"Valor en la posición {indice}: ");
+            numeros[indice] = int.Parse(Console.ReadLine());
+        }
+
+        // Mostrar el contenido original del arreglo
+        Console.WriteLine("\nArreglo ingresado:");
+        ImprimirArreglo(numeros);
+
+        // Llamar a la función para ordenar con inserción
+        Insercion(numeros);
+
+        // Mostrar el arreglo ya ordenado
+        Console.WriteLine("\nArreglo ordenado:");
+        ImprimirArreglo(numeros);
+    }
+
+    // Función que ordena un arreglo con el algoritmo de inserción
+    static void Insercion(int[] datos)
+    {
+        for (int i = 1; i < datos.Length; i++)
+        {
+            int temporal = datos[i];
+            int posicion = i - 1;
+
+            while (posicion >= 0 && datos[posicion] > temporal)
+            {
+                datos[posicion + 1] = datos[posicion];
+                posicion--;
+            }
+
+            datos[posicion + 1] = temporal;
+        }
+    }
+
+    // Función que imprime todos los elementos del arreglo
+    static void ImprimirArreglo(int[] datos)
+    {
+        foreach (int num in datos)
+        {
+            Console.Write(num + " ");
+        }
+        Console.WriteLine();
+        Console.ReadLine();
+    }
+}
