@@ -1,0 +1,41 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // PASO 1: Definir una lista ORDENADA
+        int[] lista = { 3, 6, 9, 15, 21, 30, 42 };
+
+        // PASO 2: Pedir al usuario un número
+        Console.Write("Ingrese un número a buscar: ");
+        int numero = int.Parse(Console.ReadLine());
+
+        // PASO 3: Definir los Límites
+        int izquierda = 0;
+        int derecha = lista.Length - 1;
+
+        // PASO 4: Búsqueda binaria
+        while (izquierda <= derecha) // Completar la condición
+        {
+            int medio = (izquierda + derecha) / 2; // Completar la fórmula del medio
+
+            if (lista[medio] == numero)
+            {
+                Console.WriteLine($"Número encontrado en la posición {medio}.");
+                return;
+            }
+            else if (lista[medio] < numero)
+            {
+                izquierda = medio + 1; // Buscar en la derecha
+            }
+            else
+            {
+                derecha = medio - 1; // Buscar en la izquierda
+            }
+        }
+
+        // PASO 5: Si no se encuentra
+        Console.WriteLine("Número no encontrado.");
+    }
+}
